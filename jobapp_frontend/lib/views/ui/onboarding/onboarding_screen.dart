@@ -12,7 +12,7 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ReusableText(text: "OnBoardingScreen", style: appstyle(30, Color(kDark.value), FontWeight.bold),),
+        child: ReusableText(text: "OnBoardingScreen", style: appstyle(30, Color(kOrange.value), FontWeight.bold),),
       ),
     );
   }

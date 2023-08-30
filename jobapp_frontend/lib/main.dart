@@ -10,6 +10,7 @@ import 'package:jobapp_frontend/controllers/profile_provider.dart';
 import 'package:jobapp_frontend/controllers/signup_provider.dart';
 import 'package:jobapp_frontend/controllers/zoom_provider.dart';
 import 'package:jobapp_frontend/views/ui/onboarding/onboarding_screen.dart';
+import 'package:jobapp_frontend/views/ui/onboarding/widgets/page_three.dart';
 import 'package:provider/provider.dart';
 
 import 'views/common/exports.dart';
@@ -45,14 +46,14 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Dbestech JobHub',
+            debugShowCheckedModeBanner: false,  
+            title: 'Stick JobHub',
             theme: ThemeData(
               scaffoldBackgroundColor: Color(kLight.value),
               iconTheme: IconThemeData(color: Color(kDark.value)),
               primarySwatch: Colors.grey,
             ),
-            home: const OnBoardingScreen(),
+            home: const PageThree(),
           );
         });
   }
