@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Color(kDark.value)),
               primarySwatch: Colors.grey,
             ),
-            home: const PageThree(),
+            home: const OnBoardingScreen(),
           );
         });
   }

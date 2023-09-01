@@ -1,19 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:jobapp_frontend/constants/app_constants.dart';
+import 'package:jobapp_frontend/controllers/onboarding_provider.dart';
 import 'package:jobapp_frontend/views/common/app_style.dart';
 import 'package:jobapp_frontend/views/common/reusable_text.dart';
+import 'package:jobapp_frontend/views/ui/onboarding/widgets/page_one.dart';
+import 'package:jobapp_frontend/views/ui/onboarding/widgets/page_three.dart';
+import 'package:jobapp_frontend/views/ui/onboarding/widgets/page_two.dart';
+import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
   @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
+  final PageController pageController = PageController();
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ReusableText(text: "OnBoardingScreen", style: appstyle(30, Color(kOrange.value), FontWeight.bold),),
-      ),
+      body: Consumer<OnBoardNotifier>(
+        builder: (context, OnBoardNotifier , child){
+             return Stack(
+        children: [
+          PageView(
+            physics: OnBoardNotifier.isLastPage ? const NeverScrollableScrollPhysics() : const AlwaysScrollableScrollPhysics(),
+            controller: pageController,
+            onPageChanged: (page) {
+              OnBoardNotifier.isLastPage = page == 2;
+            },
+            
+            children:const [
+              PageOne(),
+              PageTwo(),
+              PageThree(),
+            ],
+          ),
+         Positioned(
+          bottom: hieght*0.12,
+          left: 0,
+          right: 0,
+
+          child: OnBoardNotifier.isLastPage ? SizedBox.shrink() : Center(
+            child: SmoothPageIndicator(
+            controller: pageController,
+            count: 3,
+            effect: WormEffect(
+              dotHeight: 12,
+              dotWidth: 12,
+              spacing: 10,
+              dotColor: Color(kDarkGrey.value).withOpacity(0.5),
+              activeDotColor: Color(kLight.value)
+            ),
+                   ),
+          ),
+         ),
+
+
+         Positioned(
+          
+          child: OnBoardNotifier.isLastPage ? const SizedBox.shrink() : Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    pageController.jumpToPage(2);
+                  },
+                  child: ReusableText(text: "Skip", style: appstyle(16, Color(kLightBlue.value), FontWeight.w500)),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    pageController.nextPage(duration: Duration(milliseconds:300), curve: Curves.ease);
+                  },
+                  child: ReusableText(text: "Next", style: appstyle(16, Color(kLightBlue.value), FontWeight.w500)),
+                )
+              ],
+            ),
+          ) )
+
+
+
+        ],
+      );
+        }
+        )
     );
   }
 }

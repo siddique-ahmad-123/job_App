@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:jobapp_frontend/constants/app_constants.dart';
 import 'package:jobapp_frontend/views/common/app_style.dart';
 import 'package:jobapp_frontend/views/common/custom_outline_btn.dart';
 import 'package:jobapp_frontend/views/common/height_spacer.dart';
 import 'package:jobapp_frontend/views/common/reusable_text.dart';
+import 'package:jobapp_frontend/views/ui/auth/login.dart';
+import 'package:jobapp_frontend/views/ui/auth/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PageThree extends StatelessWidget {
   const PageThree({super.key});
@@ -39,8 +43,12 @@ class PageThree extends StatelessWidget {
               children: [
                 
                 CustomOutlineBtn(
-                  onTap: () {
-                    
+                  onTap: () async{
+                    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                    await prefs.setBool('entrypoint', true);
+
+                    Get.to(()=> const LoginPage());
                   },
                   text: "Login",
                   width: width*0.4,
@@ -49,7 +57,9 @@ class PageThree extends StatelessWidget {
                 ),
 
                 GestureDetector(
-                  onTap: null,
+                  onTap: () {
+                    Get.to(() => RegistrationPage());
+                  },
                   child: Container(
                   width: width*0.4,
                   height: hieght*0.06,
