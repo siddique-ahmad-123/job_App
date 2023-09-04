@@ -69,7 +69,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 
                 CustomTextField(
                   controller: name,
-                  obscureText: signUpNotifier.obscureText,
                   keyboardType: TextInputType.text,
                   hintText: "Full Name",
                   validator: (name) {
@@ -109,8 +108,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   keyboardType: TextInputType.text,
                   hintText: "Password",
                   validator: (Password) {
-                    if(Password!.isEmpty || Password.length<7){
-                      return "Please enter a valid password";
+                    if(signUpNotifier.passwordValidator(Password ?? '')){
+                      return "Please enter a valid password with atleast one Uppercase, one LoweCase,one digit and a special character and character must be 8 size";
 
                     }
                     else{

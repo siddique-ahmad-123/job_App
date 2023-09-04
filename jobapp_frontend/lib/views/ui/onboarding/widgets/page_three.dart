@@ -26,7 +26,7 @@ class PageThree extends StatelessWidget {
             Image.asset("assets/images/page3.png"),
              HeightSpacer(size: 20),
             ReusableText(text: "welcom to JobHub", style: appstyle(30, Color(kLight.value), FontWeight.w600)),
-             HeightSpacer(size: 15),
+             HeightSpacer(size: 10),
             Padding(
               padding: EdgeInsets.symmetric(
               horizontal: 30.w
@@ -36,7 +36,7 @@ class PageThree extends StatelessWidget {
             style: appstyle(14, Color(kLight.value), FontWeight.normal),
             ),
             ),
-             HeightSpacer(size: 50),
+             HeightSpacer(size: 20),
 
              Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -70,7 +70,7 @@ class PageThree extends StatelessWidget {
               ],
              ),
 
-             HeightSpacer(size: 30),
+             HeightSpacer(size: 20),
 
              ReusableText(text: "Continue as guest", style: appstyle(16, Color(kLight.value), FontWeight.w600))
             

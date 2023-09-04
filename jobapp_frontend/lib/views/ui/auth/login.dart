@@ -12,6 +12,7 @@ import 'package:jobapp_frontend/views/common/exports.dart';
 import 'package:jobapp_frontend/views/common/height_spacer.dart';
 import 'package:jobapp_frontend/views/common/reusable_text.dart';
 import 'package:jobapp_frontend/views/ui/auth/signup.dart';
+import 'package:jobapp_frontend/views/ui/mainscreen.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -122,7 +123,9 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 50,),
 
                 CustomButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(()=> const MainScreen());
+                  },
                   text: "Login",
 
                 )
